@@ -1,3 +1,18 @@
+ const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  function openLightbox(src) {
+    basicLightbox.create(`<img src="${src}" width="100%">`).show();
+  }
+
 // Đếm ngược ngày cưới
 const weddingDate = new Date("2025-05-16T10:00:00").getTime();
 

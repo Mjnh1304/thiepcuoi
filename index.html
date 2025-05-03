@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<!-- basicLightbox JS -->
+<script src="https://unpkg.com/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
 <body>
 
   <!-- PHẦN HEADER -->
@@ -30,6 +35,50 @@
         Đến dự buổi tiệc chung vui cùng gia đình chúng tôi<br>
         Vào ngày <strong>16 tháng 05 năm 2025</strong>
       </p>
+<!-- PHẦN GIỚI THIỆU CÔ DÂU CHÚ RỂ -->
+<section class="bride-groom-section">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <h2 class="section-title">Chú Rể <span class="and-space">&</span> Cô Dâu</h2>
+
+  <div class="names-row">
+    <div class="underlined-name">♡ Anh Trung</div>
+    <div class="underlined-name">♡ Thu Thủy</div>
+  </div>
+
+  <div class="photo-center">
+    <img src="anhcuoi.jpg" alt="Ảnh cưới">
+  </div>
+
+  <div class="parents-info">
+    <div class="parent">
+      <p>Con ông: <strong>Nguyễn Hữu Thắng</strong></p>
+      <p>Con bà: <strong>Dương Thị Tạ</strong></p>
+    </div>
+    <div class="parent">
+      <p>Con ông: <strong>Nguyễn Hữu Thắng</strong></p>
+      <p>Con bà: <strong>Nguyễn Thị Hòa</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- PHẦN ALBUM ẢNH -->
+ <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+<!-- basicLightbox CSS -->
+<link rel="stylesheet" href="https://unpkg.com/basiclightbox@5.0.4/dist/basicLightbox.min.css" />
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="img1.jpg" alt="Ảnh 1" onclick="openLightbox(this.src)" /></div>
+    <div class="swiper-slide"><img src="img2.jpg" alt="Ảnh 2" onclick="openLightbox(this.src)" /></div>
+    <div class="swiper-slide"><img src="img3.jpg" alt="Ảnh 3" onclick="openLightbox(this.src)" /></div>
+    <!-- Thêm bao nhiêu ảnh tùy ý -->
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+      
 <!-- PHẦN SỰ KIỆN -->
       <h2 class="event-title">Sự kiện cưới</h2>
       <div class="event-details">

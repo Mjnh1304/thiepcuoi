@@ -94,10 +94,92 @@ body, html {
   margin-bottom: 40px;
 }
 
+.bride-groom-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff0f5; /* Màu hồng nhạt */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.section-title {
+  font-size: 36px;
+  color: #b67b5e;
+  font-family: 'Great Vibes', cursive;
+  margin-bottom: 10px;
+}
+
+.and-space {
+  padding: 0 30px; /* tăng khoảng cách giữa hai cụm */
+}
+
+.names-row {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-bottom: 20px;
+}
+
+.underlined-name {
+  display: inline-block;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.5px;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: 'Dancing Script', cursive;
+  color: #b33c3c;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.underlined-name:hover {
+  color: #ff9999; /* Màu đổi khi hover */
+}
+
+.name span {
+  position: relative;
+}
+
+.photo-center img {
+  width: 300px;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.parents-info {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  font-size: 16px;
+}
+
+.parent p {
+  margin: 5px 0;
+}
+
+.mySwiper {
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.swiper-slide img:hover {
+  transform: scale(1.05);
+}
+
 .event-details {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column; /* 👉 xếp theo chiều dọc */
+  align-items: center;     /* 👉 căn giữa các box theo trục ngang */
   gap: 30px;
 }
 
