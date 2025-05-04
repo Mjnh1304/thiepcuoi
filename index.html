@@ -7,11 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-<!-- basicLightbox JS -->
-<script src="https://unpkg.com/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
 <body>
 
   <!-- PHẦN HEADER -->
@@ -30,11 +25,11 @@
 <section class="invitation" id="invitation">
     <div class="container">
       <p class="invite-text">Thân mời tới dự bữa tiệc</p>
-      <h2 class="couple-names">Trung & Thủy</h2>
       <p class="invite-desc">
         Đến dự buổi tiệc chung vui cùng gia đình chúng tôi<br>
         Vào ngày <strong>16 tháng 05 năm 2025</strong>
       </p>
+      </div>
 <!-- PHẦN GIỚI THIỆU CÔ DÂU CHÚ RỂ -->
 <section class="bride-groom-section">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -51,7 +46,7 @@
 
   <div class="parents-info">
     <div class="parent">
-      <p>Con ông: <strong>Nguyễn Hữu Thắng</strong></p>
+      <p>Con ông: <strong></strong></p>
       <p>Con bà: <strong>Dương Thị Tạ</strong></p>
     </div>
     <div class="parent">
@@ -61,23 +56,25 @@
   </div>
 </section>
 
-<!-- PHẦN ALBUM ẢNH -->
- <!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<!-- ALBUM ẢNH CƯỚI -->
+<section class="photo-album-section">
+  <h2 class="section-title">Album Ảnh Cưới</h2>
 
-<!-- basicLightbox CSS -->
-<link rel="stylesheet" href="https://unpkg.com/basiclightbox@5.0.4/dist/basicLightbox.min.css" />
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="img1.jpg" alt="Ảnh 1" onclick="openLightbox(this.src)" /></div>
-    <div class="swiper-slide"><img src="img2.jpg" alt="Ảnh 2" onclick="openLightbox(this.src)" /></div>
-    <div class="swiper-slide"><img src="img3.jpg" alt="Ảnh 3" onclick="openLightbox(this.src)" /></div>
-    <!-- Thêm bao nhiêu ảnh tùy ý -->
+  <!-- Ảnh lớn -->
+  <div id="main-photo" class="main-photo" onclick="closeLightbox()">
+    <img src="images/album1.jpg" alt="Ảnh lớn" id="mainDisplay">
   </div>
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-</div>
+
+  <!-- Dàn ảnh nhỏ -->
+  <div class="thumbnail-row">
+    <img src="images/album1.jpg" alt="Ảnh 1" onclick="openLightbox(this)">
+    <img src="images/album2.jpg" alt="Ảnh 2" onclick="openLightbox(this)">
+    <img src="images/album3.jpg" alt="Ảnh 3" onclick="openLightbox(this)">
+    <img src="images/album4.jpg" alt="Ảnh 4" onclick="openLightbox(this)">
+    <img src="images/album5.jpg" alt="Ảnh 5" onclick="openLightbox(this)">
+  </div>
+</section>
+
       
 <!-- PHẦN SỰ KIỆN -->
       <h2 class="event-title">Sự kiện cưới</h2>
@@ -190,5 +187,16 @@
 <button id="musicToggle" class="music-btn">🎵</button>
 
 <script src="script.js"></script>
+<!-- PHẦN CẢM ƠN -->
+<section class="thank-you-section">
+  <div class="thank-you-wrapper">
+    <img src="images/thankyou.jpg" alt="Ảnh cảm ơn" class="thank-you-image">
+    <div class="overlay"></div>
+    <div class="content">
+      <h2 class="names">Thank you!</h2>
+      <p class="thank-you-message">Sự hiện diện của bạn là niềm vinh hạnh cho gia đình chúng tôi.</p>
+    </div>
+  </div>
+</section>
 </body>
 </html>

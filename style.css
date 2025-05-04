@@ -102,14 +102,18 @@ body, html {
 }
 
 .section-title {
-  font-size: 36px;
+  font-size: 30px;
   color: #b67b5e;
   font-family: 'Great Vibes', cursive;
   margin-bottom: 10px;
 }
 
+.section-title:hover {
+  color: #ff9999; /* Màu đổi khi hover */
+}
+
 .and-space {
-  padding: 0 30px; /* tăng khoảng cách giữa hai cụm */
+  padding: 0 10px; /* tăng khoảng cách giữa hai cụm */
 }
 
 .names-row {
@@ -157,23 +161,65 @@ body, html {
   margin: 5px 0;
 }
 
-.mySwiper {
-  width: 90%;
-  max-width: 600px;
+/* CSS cho container và ảnh trong lightbox */
+.main-photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+/* Ảnh lớn trong lightbox */
+.main-photo img {
+  width: 80%;
+  max-width: 400px;
   height: auto;
-  margin: auto;
-  margin-top: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+}
+.fade-out {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.swiper-slide img {
-  width: 100%;
-  border-radius: 10px;
+.fade-in {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.thumbnail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.thumbnail-row img {
+  width: 80px;       /* Chiều rộng ảnh thu nhỏ */
+  height: 80px;      /* Chiều cao ảnh thu nhỏ */
+  object-fit: cover; /* Cắt ảnh để vừa với kích thước */
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
-.swiper-slide img:hover {
-  transform: scale(1.05);
+.thumbnail-row img:hover {
+  transform: scale(1.05); /* Hiệu ứng phóng to ảnh khi hover */
+}
+@media (max-width: 600px) {
+  .thumbnail-row {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+  .main-photo img {
+    max-width: 90%;
+  }
 }
 
 .event-details {
@@ -245,11 +291,19 @@ body, html {
     color: #c0392b;
     margin-bottom: 10px;
   }
+
+  .event-title:hover {
+    color: #ff9999; /* Màu đổi khi hover */
+  }
+
   .calendar-title {
     font-family: 'Great Vibes', cursive;
     font-size: 2.5em;
     color: #c0392b;
     margin-bottom: 10px;
+  }
+  .calendar-title:hover {
+    color: #ff9999; /* Màu đổi khi hover */
   }
   
   .calendar-icon {
@@ -400,4 +454,54 @@ body, html {
       font-size: 13px;
       padding: 8px 16px;
     }
+  }
+
+  .thank-you-wrapper {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* hoặc thấp hơn tuỳ ý */
+    overflow: hidden;
+  }
+  
+  .thank-you-image {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+  
+  .thank-you-wrapper:hover .thank-you-image {
+    transform: scale(1.03); /* Phóng nhẹ khi hover */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.15); /* Giảm độ tối xuống */
+    z-index: 1;
+  }
+  
+  .content {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+  }
+  
+  .names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5em;
+    margin: 0;
+  }
+  
+  .thank-you-message {
+    font-size: 1.2em;
+    font-family: 'Arial', sans-serif;
+    margin-top: 10px;
   }

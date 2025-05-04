@@ -1,17 +1,59 @@
- const swiper = new Swiper(".mySwiper", {
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
+let currentIndex = 0;
+const images = [
+  "images/album1.jpg",
+  "images/album2.jpg",
+  "images/album3.jpg",
+  "images/album4.jpg",
+  "images/album5.jpg"
+];
 
-  function openLightbox(src) {
-    basicLightbox.create(`<img src="${src}" width="100%">`).show();
-  }
+function openLightbox(img) {
+  const lightbox = document.getElementById('main-photo');
+  const lightboxImg = document.getElementById('mainDisplay');
+  currentIndex = images.indexOf(img.src);  // Lấy chỉ số ảnh khi mở
+
+  changeImageWithEffect(img.src);
+  lightbox.classList.add('show');
+}
+
+// Đóng lightbox
+function closeLightbox() {
+  document.getElementById('main-photo').classList.remove('show');
+}
+
+// Chuyển ảnh có hiệu ứng
+function changeImageWithEffect(src) {
+  const lightboxImg = document.getElementById('mainDisplay');
+  lightboxImg.classList.add('fade-out');
+  setTimeout(() => {
+    lightboxImg.src = src;
+    lightboxImg.classList.remove('fade-out');
+    lightboxImg.classList.add('fade-in');
+    setTimeout(() => {
+      lightboxImg.classList.remove('fade-in');
+    }, 300);
+  }, 300);
+}
+
+// Nhấn vào ảnh chính để chuyển ảnh
+document.addEventListener("DOMContentLoaded", () => {
+  const lightboxImg = document.getElementById('mainDisplay');
+
+  lightboxImg.addEventListener('click', (event) => {
+    const imgWidth = lightboxImg.clientWidth;
+    const clickX = event.offsetX;
+
+    if (clickX < imgWidth / 2) {
+      // Nhấn bên trái → ảnh trước
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+    } else {
+      // Nhấn bên phải → ảnh sau
+      currentIndex = (currentIndex + 1) % images.length;
+    }
+
+    changeImageWithEffect(images[currentIndex]);
+  });
+});
 
 // Đếm ngược ngày cưới
 const weddingDate = new Date("2025-05-16T10:00:00").getTime();
