@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (music) {
     music.play().then(() => {
       // ✅ Sau khi play thành công, cập nhật nút
-      if (musicBtn) musicBtn.textContent = "⏸️";
+      if (musicBtn) musicBtn.textContent = "🔇";
     }).catch((err) => {
       console.warn("Không thể tự phát nhạc:", err);
       if (musicBtn) musicBtn.style.display = 'block'; // Cho phép người dùng tự bật
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("click", () => {
     if (music && music.paused) {
       music.play().then(() => {
-        if (musicBtn) musicBtn.textContent = "⏸️";
+        if (musicBtn) musicBtn.textContent = "🔇";
       }).catch(() => {});
     }
   }, { once: true });
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     musicBtn.addEventListener("click", () => {
       if (music.paused) {
         music.play();
-        musicBtn.textContent = "⏸️";
+        musicBtn.textContent = "🔇";
       } else {
         music.pause();
         musicBtn.textContent = "🎵";

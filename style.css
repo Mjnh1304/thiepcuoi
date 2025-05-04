@@ -76,12 +76,15 @@ body, html {
 }
 
 .invite-text {
-  font-size: 1.4em;
+  position: relative;
+  top: -280px;
+  margin-top: -30px; /* kéo lên */
+  margin-bottom: 10px; /* tạo khoảng cách dưới */
+  font-size: 1.1em;
   font-style: italic;
-  color: #f8f8f8; /* màu sáng hơn */
-  font-family: 'Playfair Display', serif; /* sang trọng hơn */
-  margin-bottom: 20px; /* không đẩy tên xuống quá sâu */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* giúp nổi bật trên nền ảnh */
+  color: #f8f8f8;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .couple-names {
@@ -197,12 +200,14 @@ body, html {
 }
 .thumbnail-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;           /* Ngăn không cho ảnh xuống dòng */
   gap: 8px;
   justify-content: center;
   margin-top: 16px;
+  max-width: 100%;             /* Chiều rộng tối đa là 100% container cha */
+  overflow-x: auto;            /* Cho phép cuộn ngang nếu quá nhiều ảnh */
+  padding-bottom: 8px;         /* Chống bị cắt khi cuộn */
 }
-
 .thumbnail-row img {
   width: 80px;       /* Chiều rộng ảnh thu nhỏ */
   height: 80px;      /* Chiều cao ảnh thu nhỏ */
