@@ -76,10 +76,12 @@ body, html {
 }
 
 .invite-text {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+  font-size: 1.4em;
   font-style: italic;
-  color: #888;
+  color: #f8f8f8; /* màu sáng hơn */
+  font-family: 'Playfair Display', serif; /* sang trọng hơn */
+  margin-bottom: 20px; /* không đẩy tên xuống quá sâu */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* giúp nổi bật trên nền ảnh */
 }
 
 .couple-names {
