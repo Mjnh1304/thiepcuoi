@@ -158,8 +158,8 @@ body, html {
 .parents-info {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  font-size: 10px;
+  gap: 45px;
+  font-size: 14px;
   flex-wrap: nowrap;
 }
 
@@ -374,6 +374,11 @@ body, html {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+  }
+
+  .anhsukiencuoi {
+    width: 300px;
+    height: auto;
   }
 
   .map-link {
