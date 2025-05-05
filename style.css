@@ -5,6 +5,73 @@ body, html {
     scroll-behavior: smooth;
   }
   
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px); /* Từ trên xuống */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in-down {
+    animation: fadeInDown 2s ease-out forwards;
+  }
+
+/* Thêm vào cho ảnh trong phần giới thiệu hoặc các ảnh cần hiệu ứng */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(50px); /* Di chuyển ảnh từ dưới lên */
+  animation: fadeInUp 2.5s ease-out forwards; /* Điều chỉnh thời gian 2.5s */
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* Bắt đầu từ dưới */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Dừng ở vị trí ban đầu */
+  }
+}
+
+.slideFromLeft {
+  opacity: 0;
+  transform: translateX(-50px); /* Bắt đầu từ bên trái */
+  animation: slideInFromLeft 2.5s ease-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px); /* Bắt đầu ngoài khung nhìn bên trái */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Kết thúc tại vị trí gốc */
+  }
+}
+
+.slideFromRight {
+  opacity: 0;
+  transform: translateX(50px); /* Bắt đầu từ bên phải */
+  animation: slideInFromRight 2.5s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px); /* Bắt đầu ngoài khung nhìn bên phải */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Kết thúc tại vị trí gốc */
+  }
+}
+
   .hero-img {
     position: relative;
     width: 100%;
@@ -126,6 +193,7 @@ body, html {
   justify-content: center;
   gap: 100px;
   margin-bottom: 20px;
+  
 }
 
 .underlined-name {
@@ -271,7 +339,7 @@ body, html {
   padding: 20px 25px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  width: 300px;
+  width: 320px;
   border: 4px double #e0b1aa;
 }
 
@@ -406,8 +474,12 @@ body, html {
   }
 
   .anhsukiencuoi {
-    width: 300px;
+    width: 100%;
+    max-width: 240px; /* nhỏ hơn 300px */
     height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
   }
   .confirm-link {
     background-color: #fc9f97;
