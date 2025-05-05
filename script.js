@@ -4,7 +4,10 @@ const images = [
   "images/album2.jpg",
   "images/album3.jpg",
   "images/album4.jpg",
-  "images/album5.jpg"
+  "images/album5.jpg",
+  "images/album6.jpg",
+  "images/album7.jpg",
+
 ];
 
 function openLightbox(img) {
@@ -83,38 +86,45 @@ document.addEventListener("DOMContentLoaded", function () {
   const music = document.getElementById("weddingMusic");
   const musicBtn = document.getElementById("musicToggle");
 
-  // Tự động phát nhạc nếu được phép
-  if (music) {
-    music.play().then(() => {
-      // ✅ Sau khi play thành công, cập nhật nút
-      if (musicBtn) musicBtn.textContent = "🔇";
-    }).catch((err) => {
-      console.warn("Không thể tự phát nhạc:", err);
-      if (musicBtn) musicBtn.style.display = 'block'; // Cho phép người dùng tự bật
-    });
+  // Đảm bảo các phần tử tồn tại
+  if (!music || !musicBtn) {
+    console.warn("Không tìm thấy #weddingMusic hoặc #musicToggle");
+    return;
   }
 
-  // Fallback khi click lần đầu
-  window.addEventListener("click", () => {
-    if (music && music.paused) {
-      music.play().then(() => {
-        if (musicBtn) musicBtn.textContent = "🔇";
-      }).catch(() => {});
-    }
-  }, { once: true });
+  // Hàm cập nhật trạng thái nút
+  const updateButtonState = () => {
+    musicBtn.textContent = music.paused ? "🎵" : "🔇";
+  };
+
+  // Tự động phát nhạc nếu được phép
+  music.play().then(() => {
+    // Phát thành công, cập nhật nút
+    updateButtonState();
+  }).catch((err) => {
+    console.warn("Không thể tự phát nhạc:", err);
+    // Hiển thị nút để người dùng tự bật
+    musicBtn.style.display = "block";
+    updateButtonState(); // Đảm bảo nút hiển thị đúng trạng thái
+  });
 
   // Nút bật/tắt nhạc
-  if (musicBtn) {
-    musicBtn.addEventListener("click", () => {
-      if (music.paused) {
-        music.play();
-        musicBtn.textContent = "🔇";
-      } else {
-        music.pause();
-        musicBtn.textContent = "🎵";
-      }
-    });
-  }
+  musicBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // Ngăn hành vi mặc định
+    if (music.paused) {
+      music.play().then(() => {
+        updateButtonState();
+      }).catch((err) => {
+        console.warn("Không thể phát nhạc:", err);
+      });
+    } else {
+      music.pause();
+      updateButtonState();
+    }
+  });
+
+  // Cập nhật trạng thái ban đầu
+  updateButtonState();
 });
 
 // Hiệu ứng hoa rơi
@@ -136,3 +146,91 @@ function createPetal() {
 }
 
 setInterval(createPetal, 500);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const row = document.querySelector('.thumbnail-row');
+  const thumbnails = document.querySelectorAll('.thumbnail-row img');
+  const mainDisplay = document.getElementById('mainDisplay');
+  const mainPhoto = document.getElementById('main-photo');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // PC - Chuột
+  row.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - row.offsetLeft;
+    scrollLeft = row.scrollLeft;
+    row.style.cursor = 'grabbing';
+  });
+
+  row.addEventListener('mouseleave', () => {
+    isDown = false;
+    row.style.cursor = 'grab';
+  });
+
+  row.addEventListener('mouseup', () => {
+    isDown = false;
+    row.style.cursor = 'grab';
+  });
+
+  row.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - row.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    row.scrollLeft = scrollLeft - walk;
+  });
+
+  // Mobile - Cảm ứng
+  row.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX - row.offsetLeft;
+    scrollLeft = row.scrollLeft;
+  });
+
+  row.addEventListener('touchmove', (e) => {
+    const x = e.touches[0].pageX - row.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    row.scrollLeft = scrollLeft - walk;
+  });
+
+  // Hàm openLightbox để hiển thị ảnh lớn
+  function openLightbox(thumbnail) {
+    mainDisplay.src = thumbnail.src;
+    mainDisplay.alt = thumbnail.alt;
+    mainPhoto.style.display = 'block'; // Hiển thị ảnh lớn
+  }
+
+  // Hàm closeLightbox để ẩn ảnh lớn
+  function closeLightbox() {
+    mainPhoto.style.display = 'none'; // Ẩn ảnh lớn
+  }
+
+  // Căn giữa ảnh nhỏ khi nhấn
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', (e) => {
+      e.preventDefault(); // Ngăn hành vi mặc định
+      e.stopPropagation(); // Ngăn sự kiện lan tỏa
+
+      // Tính toán vị trí để căn giữa ảnh nhỏ
+      const rowRect = row.getBoundingClientRect();
+      const thumbnailRect = thumbnail.getBoundingClientRect();
+      const scrollOffset = thumbnail.offsetLeft + (thumbnailRect.width / 2) - (rowRect.width / 2);
+
+      // Cuộn để căn giữa ảnh nhỏ
+      row.scrollTo({
+        left: scrollOffset,
+        behavior: 'smooth'
+      });
+
+      // Hiển thị ảnh lớn
+      openLightbox(thumbnail);
+    });
+  });
+
+  // Đảm bảo cuộn về left: 0 khi tải trang
+  row.scrollLeft = 0;
+
+  // Gán hàm closeLightbox toàn cục
+  window.closeLightbox = closeLightbox;
+});
