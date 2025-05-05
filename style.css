@@ -159,7 +159,7 @@ body, html {
   display: flex;
   justify-content: center;
   gap: 45px;
-  font-size: 12px;
+  font-size: 10px;
   flex-wrap: nowrap;
 }
 
