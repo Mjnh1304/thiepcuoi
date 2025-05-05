@@ -199,28 +199,37 @@ body, html {
   transform: translateX(0);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-.photo-album-section{
-  max-width: 500px;
-  margin: 0 auto; /* căn giữa */
+#mainDisplay {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
+
+.photo-album-section {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 .thumbnail-row {
   display: flex;
-  flex-wrap: nowrap;
   gap: 8px;
-  overflow-x: auto;             /* Cho phép cuộn ngang */
-  scrollbar-width: none;        /* Ẩn scrollbar cho Firefox */
-  -ms-overflow-style: none;     /* Ẩn scrollbar cho IE */
+  overflow-x: auto;
+  max-width: 100%;
   cursor: grab;
   padding-bottom: 8px;
-  max-width: 100%;              /* Cho phép rộng toàn khung */
-  justify-content: flex-start;  /* Bắt đầu từ bên trái */
-  align-items: flex-start;      /* Đảm bảo ảnh không bị cắt */
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .thumbnail-row::-webkit-scrollbar {
-  display: none;                /* Ẩn scrollbar cho Chrome/Safari */
+  display: none;
 }
 
 .thumbnail-row img {
@@ -229,20 +238,13 @@ body, html {
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
-  flex-shrink: 0;               /* Ngăn ảnh co lại */
+  flex-shrink: 0;
   transition: transform 0.3s ease;
   user-select: none;
-}
-
-.thumbnail-row img:hover {
-  transform: scale(1.05);
-}
-.thumbnail-row, .thumbnail-row img {
-  -webkit-user-select: none; /* Cho Safari */
-  -moz-user-select: none;   /* Cho Firefox */
-  -ms-user-select: none;    /* Cho IE */
-  user-select: none;
-  -webkit-touch-callout: none; /* Ngăn menu ngữ cảnh trên iOS */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Sửa lại media query */

@@ -5,55 +5,46 @@ const images = [
   "images/album3.jpg",
   "images/album4.jpg",
   "images/album5.jpg",
-  "images/album6.jpg",
-  "images/album7.jpg",
-
+  "images/album6.JPG",
+  "images/album7.JPG",
+  "images/album8.JPG"
 ];
 
 function openLightbox(img) {
   const lightbox = document.getElementById('main-photo');
   const lightboxImg = document.getElementById('mainDisplay');
-  currentIndex = images.indexOf(img.src);  // Lấy chỉ số ảnh khi mở
-
+  currentIndex = images.indexOf(img.src);
   changeImageWithEffect(img.src);
   lightbox.classList.add('show');
 }
 
-// Đóng lightbox
 function closeLightbox() {
   document.getElementById('main-photo').classList.remove('show');
 }
 
-// Chuyển ảnh có hiệu ứng
+// ✅ Hiệu ứng mờ dần rồi hiện lên (mượt)
 function changeImageWithEffect(src) {
   const lightboxImg = document.getElementById('mainDisplay');
-  lightboxImg.classList.add('fade-out');
+  lightboxImg.style.opacity = 0;
   setTimeout(() => {
     lightboxImg.src = src;
-    lightboxImg.classList.remove('fade-out');
-    lightboxImg.classList.add('fade-in');
-    setTimeout(() => {
-      lightboxImg.classList.remove('fade-in');
-    }, 300);
+    lightboxImg.onload = () => {
+      lightboxImg.style.opacity = 1;
+    };
   }, 300);
 }
 
-// Nhấn vào ảnh chính để chuyển ảnh
+// Nhấn để chuyển ảnh trái/phải
 document.addEventListener("DOMContentLoaded", () => {
   const lightboxImg = document.getElementById('mainDisplay');
-
   lightboxImg.addEventListener('click', (event) => {
     const imgWidth = lightboxImg.clientWidth;
     const clickX = event.offsetX;
-
     if (clickX < imgWidth / 2) {
-      // Nhấn bên trái → ảnh trước
       currentIndex = (currentIndex - 1 + images.length) % images.length;
     } else {
-      // Nhấn bên phải → ảnh sau
       currentIndex = (currentIndex + 1) % images.length;
     }
-
     changeImageWithEffect(images[currentIndex]);
   });
 });
