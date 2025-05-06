@@ -12,16 +12,16 @@ body, html {
 
 /* Hiệu ứng khi cuộn tới */
 .animate.fade-in-down {
-  animation: fadeInDown 2.5s ease-out forwards;
+  animation: fadeInDown 1.5s ease-out forwards;
 }
 .animate.fade-in-up {
-  animation: fadeInUp 2.5s ease-out forwards;
+  animation: fadeInUp 1.5s ease-out forwards;
 }
 .animate.slideFromLeft {
-  animation: slideInFromLeft 2.5s ease-out forwards;
+  animation: slideInFromLeft 1.5s ease-out forwards;
 }
 .animate.slideFromRight {
-  animation: slideInFromRight 2.5s ease-out forwards;
+  animation: slideInFromRight 1.5s ease-out forwards;
 }
 
 /* Keyframes giữ nguyên */
