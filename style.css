@@ -5,73 +5,42 @@ body, html {
     scroll-behavior: smooth;
   }
   
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-50px); /* Từ trên xuống */
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .fade-in-down {
-    animation: fadeInDown 2s ease-out forwards;
-  }
-
-/* Thêm vào cho ảnh trong phần giới thiệu hoặc các ảnh cần hiệu ứng */
-.fade-in-up {
+  /* Base state: chưa hiện */
+.fade-in-down, .fade-in-up, .slideFromLeft, .slideFromRight {
   opacity: 0;
-  transform: translateY(50px); /* Di chuyển ảnh từ dưới lên */
-  animation: fadeInUp 2.5s ease-out forwards; /* Điều chỉnh thời gian 2.5s */
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(50px); /* Bắt đầu từ dưới */
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0); /* Dừng ở vị trí ban đầu */
-  }
+/* Hiệu ứng khi cuộn tới */
+.animate.fade-in-down {
+  animation: fadeInDown 2.5s ease-out forwards;
 }
-
-.slideFromLeft {
-  opacity: 0;
-  transform: translateX(-50px); /* Bắt đầu từ bên trái */
+.animate.fade-in-up {
+  animation: fadeInUp 2.5s ease-out forwards;
+}
+.animate.slideFromLeft {
   animation: slideInFromLeft 2.5s ease-out forwards;
 }
-
-@keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px); /* Bắt đầu ngoài khung nhìn bên trái */
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0); /* Kết thúc tại vị trí gốc */
-  }
-}
-
-.slideFromRight {
-  opacity: 0;
-  transform: translateX(50px); /* Bắt đầu từ bên phải */
+.animate.slideFromRight {
   animation: slideInFromRight 2.5s ease-out forwards;
 }
 
-@keyframes slideInFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(50px); /* Bắt đầu ngoài khung nhìn bên phải */
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0); /* Kết thúc tại vị trí gốc */
-  }
+/* Keyframes giữ nguyên */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-80px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(80px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInFromLeft {
+  0% { opacity: 0; transform: translateX(-80px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInFromRight {
+  0% { opacity: 0; transform: translateX(80px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
   .hero-img {
     position: relative;
     width: 100%;

@@ -5,19 +5,20 @@ const images = [
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
-  const images = document.querySelectorAll('img');  // Lấy tất cả các ảnh
+  const animatedElements = document.querySelectorAll('.fade-in-down, .fade-in-up, .slideFromLeft, .slideFromRight');
 
-  function checkVisibility() {
-    images.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-        img.classList.add('visible');  // Thêm lớp visible khi ảnh vào vùng nhìn thấy
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target); // chỉ kích hoạt 1 lần
       }
     });
-  }
+  }, {
+    threshold: 0.1 // chỉ cần 10% phần tử hiển thị là chạy
+  });
 
-  window.addEventListener('scroll', checkVisibility);
-  checkVisibility();  // Kiểm tra ngay khi trang được tải
+  animatedElements.forEach(el => observer.observe(el));
 });
 
 function changeImageWithEffect(src) {
@@ -150,7 +151,7 @@ function createPetal() {
   petal.textContent = '🌸';
 
   petal.style.left = Math.random() * 100 + 'vw';
-  const duration = Math.random() * 3 + 5;
+  const duration = Math.random() * 3 + 5; // 5s–8s
   petal.style.animationDuration = duration + 's';
   petal.style.fontSize = (Math.random() * 10 + 20) + 'px';
 
@@ -162,6 +163,9 @@ function createPetal() {
     petalCount--;
   }, duration * 1000);
 }
+
+// Gọi liên tục mỗi 300ms
+setInterval(createPetal, 300);
 
 // ✅ Gán closeLightbox toàn cục
 window.closeLightbox = closeLightbox;
@@ -185,4 +189,4 @@ setInterval(() => {
 
   // Cập nhật chỉ số ảnh
   autoSlideIndex = (autoSlideIndex + 1) % images.length;
-}, 10000); // 10 giây chuyển ảnh 1 lần
+}, 5000); // 5 giây chuyển ảnh 1 lần
