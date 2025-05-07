@@ -97,24 +97,33 @@ document.addEventListener("DOMContentLoaded", () => {
   row.scrollLeft = 0;
 
   // ✅ Nhạc đám cưới
-  if (music && musicBtn) {
-    const updateBtn = () => musicBtn.textContent = music.paused ? "🎵" : "🔇";
-
-    music.play().then(updateBtn).catch(() => {
-      musicBtn.style.display = "block";
-      updateBtn();
-    });
-
-    musicBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      music.paused
-        ? music.play().then(updateBtn).catch(console.warn)
-        : (music.pause(), updateBtn());
-    });
-
-    updateBtn();
-  }
-
+  window.addEventListener("DOMContentLoaded", () => {
+    const music = document.getElementById("weddingMusic");
+    const musicBtn = document.getElementById("musicToggle");
+  
+    if (music && musicBtn) {
+      // Bỏ muted sau khi đã autoplay thành công (một mẹo vượt autoplay policy)
+      const tryPlay = () => {
+        music.muted = false;
+        music.play().catch(() => {
+          musicBtn.style.display = "block";
+        });
+      };
+  
+      tryPlay(); // thử phát
+  
+      // Nút toggle bật/tắt
+      musicBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (music.paused) {
+          music.play().then(() => musicBtn.textContent = "🔇");
+        } else {
+          music.pause();
+          musicBtn.textContent = "🎵";
+        }
+      });
+    }
+  });
   // ✅ Đếm ngược ngày cưới
   const weddingDate = new Date("2025-05-16T10:00:00").getTime();
   const countdown = setInterval(() => {
@@ -161,7 +170,7 @@ function createPetal() {
   setTimeout(() => {
     petal.remove();
     petalCount--;
-  }, duration * 1000);
+  }, duration * 2000);
 }
 
 // Gọi liên tục mỗi 300ms
@@ -189,4 +198,4 @@ setInterval(() => {
 
   // Cập nhật chỉ số ảnh
   autoSlideIndex = (autoSlideIndex + 1) % images.length;
-}, 5000); // 5 giây chuyển ảnh 1 lần
+}, 7000); // 7 giây chuyển ảnh 1 lần
