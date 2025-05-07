@@ -102,24 +102,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const musicBtn = document.getElementById("musicToggle");
   
     if (music && musicBtn) {
-      // Bỏ muted sau khi đã autoplay thành công (một mẹo vượt autoplay policy)
-      const tryPlay = () => {
-        music.muted = false;
-        music.play().catch(() => {
-          musicBtn.style.display = "block";
-        });
+      const updateBtn = () => {
+        musicBtn.textContent = music.paused ? "🎵" : "🔇";
       };
   
-      tryPlay(); // thử phát
+      // Tự động bỏ muted và phát nhạc (nếu được phép)
+      const tryPlay = () => {
+        music.muted = false;
+        music.play()
+          .then(() => {
+            updateBtn();
+            musicBtn.style.display = "block";
+          })
+          .catch(() => {
+            // Trình duyệt chặn autoplay, chỉ hiển thị nút
+            musicBtn.style.display = "block";
+            updateBtn();
+          });
+      };
   
-      // Nút toggle bật/tắt
+      tryPlay();
+  
       musicBtn.addEventListener("click", (e) => {
         e.preventDefault();
         if (music.paused) {
-          music.play().then(() => musicBtn.textContent = "🔇");
+          music.play()
+            .then(updateBtn)
+            .catch(console.warn);
         } else {
           music.pause();
-          musicBtn.textContent = "🎵";
+          updateBtn();
         }
       });
     }
